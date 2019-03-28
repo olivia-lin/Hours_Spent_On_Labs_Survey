@@ -1,4 +1,4 @@
-# Hours_Spent_On_Labs_Survey
+µ# Hours_Spent_On_Labs_Survey
 DSCI 554 Survey Design and Experiment Study
 
 This survey will investigate the following question:
@@ -45,6 +45,6 @@ First, we plan to do exploratory data analysis to explore our survey results and
 
 Next, we plan to do regression with log-link transformation to analyze the survey results because our response variable is expected to be positive. Our response variable is expected to be bounded between 0 and 168 hours. The formula for our regression is:
 
-$E[Y] = exp(\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + \beta_4 X_4 + \beta_5 X_5 + \beta_5 X_5 + \beta_6 X_6)$
+$$E[Y] = exp(\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + \beta_4 X_4 + \beta_5 X_5 + \beta_5 X_5 + \beta_6 X_6)$$
 
 Finally, we will determine how office hours affect average time spent on labs per week by interpreting \beta_1 while holding all other variables constant. On average, one time increase in office hours is expected to increase hours spent on labs per week by exp(\beta_1) times.
