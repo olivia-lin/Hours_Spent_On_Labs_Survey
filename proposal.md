@@ -45,6 +45,6 @@ First, we plan to do exploratory data analysis to explore our survey results and
 
 Next, we plan to do regression with log-link transformation to analyze the survey results because our response variable is expected to be positive. Our response variable is expected to be bounded between 0 and 168 hours. The formula for our regression is:
 
-![](imgs/Proposal_eq.PNG)
+![](imgs/Proposal_eq.png)
 
 Finally, we will determine how office hours affect average time spent on labs per week by interpreting \beta_1 while holding all other variables constant. On average, one time increase in office hours is expected to increase hours spent on labs per week by exp(\beta_1) times.
