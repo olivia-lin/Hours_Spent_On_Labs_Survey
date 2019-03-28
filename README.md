@@ -8,4 +8,4 @@ DSCI 554 Survey Design and Experiment Study
 |Betty Zhou|[bettybhzhou](https://github.com/bettybhzhou)|
 |Juno Chen|[huijuechen](https://github.com/huijuechen)|
 |Orphelia Ellogne|[ellognea](https://github.com/ellognea)|
-|Olivia Lin |[olivia-lin](https://github.com/olivia)|
+|Olivia Lin |[olivia-lin](https://github.com/olivia-lin)|
