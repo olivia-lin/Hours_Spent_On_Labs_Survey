@@ -9,14 +9,24 @@ How does the number of times a Master of Data Science (MDS) student goes to offi
 Confounding variables in our study include whether someone works on labs in groups or alone, someone's academic background, the number of years someone has been out-of-school, someone's competency in programming and statistics and whether someone attempts optional questions. We will address the confounding variables with the following questions and provide explanations for why these variables are confounding under each question:
 
 1. Do you work in groups or alone?
-
+  - Mostly in groups
+  - Mostly alone
   > Someone working in groups may have enough support to complete labs without going to office hours, but at the same time, someone working in groups may spend more time discussing lab questions and thus spend more time on labs.
 
-2. What is your academic background (i.e. Science, engineering, statistics, math, business, arts or other)?
-
+2. What is your academic background?
+  - Science
+  - Engineering
+  - Math
+  - Business
+  - Other
   > Since MDS courses are heavily statistics and computer science based, someone with a statistics or computer science background are less likely to go to office hours. Furthermore, someone with a statistics or computer science background are more likely to finish labs faster because they are more rehearsed in the topics covered by the MDS curriculum.
 
 3. How many years have you been out-of-school?
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5+
 
   > The longer someone has been out-of-school, the more likely for them to not be used to school routines and thus, more likely to struggle academically. Therefore, the longer someone has been out-of-school, the more likely someone will go to office hours to ask for help. At the same time, this student may not go to office hours, but spend more time on labs just because they are struggling.
 
@@ -29,6 +39,9 @@ Confounding variables in our study include whether someone works on labs in grou
   > A student with strong statistical knowledge might understand concepts of certain MDS courses more quickly and spend less time on labs. At the same time, this student may require less help with concepts, hence less likely to go to office hours.
 
 6. Do you do optional questions?
+  - Always
+  - Sometimes
+  - Rarely
 
   > A student who decides to solve optional questions probably understands the material well, and thus, is less likely to go to office hours. On the other hand, compared to a person who only do mandatory questions, this student might spend more time working on labs.
 

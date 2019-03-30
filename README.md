@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # DSCI 554 Survey Design and Experiment Study: Hours Spent On Labs
 
 # Contributors
