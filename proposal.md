@@ -2,7 +2,7 @@
 
 This survey will investigate the following question:
 
-How does the number of times someone goes to office hours affect the average number of hours a Master of Data Science (MDS) student spends working on labs per week?
+How does the number of times a Master of Data Science (MDS) student goes to office hours affect the average number of hours they spend working on labs per week?
 
 ## Confounding Variables
 
@@ -30,7 +30,7 @@ Confounding variables in our study include whether someone works on labs in grou
 
 6. Do you do optional questions?
 
-  > If a student decides to do optional questions, this student probably understands the material well, and thus, less likely to go to the office hour. On the other hand, given the fact that this student is doing optional questions, the hours this person spend on labs might increase.
+  > A student who decides to solve optional questions probably understands the material well, and thus, is less likely to go to office hours. On the other hand, compared to a person who only do mandatory questions, this student might spend more time working on labs.
 
 ## Analysis Plan
 
