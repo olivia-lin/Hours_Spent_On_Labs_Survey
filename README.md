@@ -1,11 +1,8 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-# DSCI 554 Survey Design and Experiment Study: Hours Spent On Labs
+# DSCI 554 Survey Design and Experiment Study: 
 
-# Contributors
+# Hours Spent On Labs
+
+## Contributors
 
 |Name|Github.com User Id|
 |--|--|
@@ -14,12 +11,12 @@ output:
 |Orphelia Ellogne|[ellognea](https://github.com/ellognea)|
 |Olivia Lin |[olivia-lin](https://github.com/olivia-lin)|
 
-# Research Question
+## Research Question
 
 This survey will investigate the following question:
 
 How does the number of times a Master of Data Science (MDS) student goes to office hours affect the average number of hours they spend working on labs per week?
 
-# Important Files
+## Important Files
 
 - Milestone 1: [research proposal](proposal.md)
