@@ -40,4 +40,12 @@ Next, we plan to analyze the survey results using regression with a log-link tra
 
 ![](imgs/Proposal_eq.png)
 
-Finally, we will determine how office hours affect average time spent on labs per week by interpreting \beta_1 while holding all other variables constant. On average, one visit increase in office hours is expected to increase hours spent on labs per week by exp(\beta_1) times.
+Finally, we will determine how office hours affect average time spent on labs per week by interpreting $\beta_1$ while holding all other variables constant. On average, one visit increase in office hours is expected to increase hours spent on labs per week by $exp(\beta_1)$ times.
+
+## Online Surveys Ethics
+
+Our proposed survey is not collecting any direct identifying information (including IP address). It is only collecting one indirect identifier in survey Question 2, which is the academic background of the respondent. It would be very difficult to re-identify the respondents from this piece of information.
+
+As our study is limited to the online survey, a cover letter will be presented to the participant for them to make an informed decision about participating in the survey study. We will use a Canadian-hosted survery tool and all survey data will be stored and accessed in Canada only. 
+
+The survey will comply with BC Freedom of Information and Protection of Privacy Act (FIPPA). For more details, please see [UBC Office of Research Ethics document on Using Online Surveys](https://ethics.research.ubc.ca/sites/ore.ubc.ca/files/documents/Online_Survey-GN.pdf).
