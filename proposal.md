@@ -46,7 +46,7 @@ Next, we plan to analyze the survey results using regression with a log-link tra
 
 ![](imgs/Proposal_eq.png)
 
-Finally, we will determine how office hours affect average time spent on labs per week by interpreting $\beta_1$ while holding all other variables constant. On average, one visit increase in office hours is expected to increase hours spent on labs per week by $exp(\beta_1)$ times.
+Finally, we will determine how office hours affect average time spent on labs per week by interpreting *β*<sub>1</sub> while holding all other variables constant. On average, one visit increase in office hours is expected to increase hours spent on labs per week by *e*x*p*(*β*<sub>1</sub>) times.
 
 ## Online Surveys Ethics
 
