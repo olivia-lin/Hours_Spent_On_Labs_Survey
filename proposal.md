@@ -4,6 +4,11 @@ This survey will investigate the following question:
 
 How does the number of times someone goes to office hours affect the average number of hours a Master of Data Science (MDS) student spends working on labs per week?
 
+Null Hypotheses: The number of times someone goes to office hours **doesn't affect** the average number of hours a MDS student spends working on labs per week.
+
+Alternative Hypotheses: The number of times someone goes to office hours **affects** the average number of hours a MDS student spends working on labs per week.
+
+
 ## Confounding Variables
 
 Confounding variables in our study include whether someone works on labs in groups or alone, someone's academic background, the number of years someone has been out-of-school, someone's competency in programming and statistics and whether someone attempts optional questions. We will address the confounding variables with the following questions and provide explanations for why these variables are confounding under each question:
@@ -30,11 +35,11 @@ Confounding variables in our study include whether someone works on labs in grou
 
 6. Do you do optional questions?
 
-  > If a student decides to do optional questions, this student probably understands the material well, and thus, less likely to go to the office hour. On the other hand, given the fact that this student is doing optional questions, the hours this person spend on labs might increase.
+  > If a student decides to do optional questions, this student probably understands the material well, and thus, less likely to go to the office hour. On the other hand, given the fact that this student is doing optional questions, the hours this person spend on labs might increase. However, we will treat our response variable the hours spent on labs per week as continuous.
 
 ## Analysis Plan
 
-First, we plan to do exploratory data analysis to explore our survey results and deal with outliers, such as negative values or out-of-bound values by removing them.
+First, we plan to do exploratory data analysis to explore our survey results and deal with outliers, such as negative values or out-of-bound values by removing them. Since the responses we got are integers and categorical answers, we don't need to round the values. 
 
 Next, we plan to analyze the survey results using regression with a log-link transformation because our response variable is expected to be positive. Our response variable is expected to be bounded between 0 and 168 hours (i.e maximum hours per week). The formula for our regression is:
 
