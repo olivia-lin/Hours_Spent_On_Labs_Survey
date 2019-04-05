@@ -47,13 +47,13 @@ Confounding variables in our study include whether someone works on labs in grou
 
 ## Statistical Analysis
 
-**Null hypothesis:** The number of times a MDS student attends office hours does not affect the average number of hours spent working on labs per week?
+**Null hypothesis:** The number of times a MDS student attends office hours does not affect the average number of hours spent working on labs per week.
 
-**Alternative hypothesis:** The number of times a MDS student attends office hours affects the average number of hours spent working on labs per week?
+**Alternative hypothesis:** The number of times a MDS student attends office hours affects the average number of hours spent working on labs per week.
 
 #### Plan:
 
-First, we plan to do exploratory data analysis to explore our survey results and deal with outliers, such as negative values or out-of-bound values by removing them.
+First, we plan to do exploratory data analysis to explore our survey results and deal with outliers, such as negative values or out-of-bound values by removing them. 
 
 Next, we plan to analyze the survey results using regression with a log-link transformation because our response variable is expected to be non-negative. Our response variable is expected to be bounded between 0 and 168 hours (i.e maximum hours per week). The formula for our regression is:
 
