@@ -13,7 +13,7 @@
 
 ## Research Question
 
-This survey can be found [here](https://ubc-mds.slack.com/archives/C24HU8X0W/p1554330074049900). Itwill investigate the following question:
+This survey can be found [here](https://ubc-mds.slack.com/archives/C24HU8X0W/p1554330074049900). It will investigate the following question:
 
 How does the number of times a Master of Data Science (MDS) student goes to office hours affect the average number of hours they spend working on labs per week?
 
