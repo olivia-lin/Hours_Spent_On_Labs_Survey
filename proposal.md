@@ -63,7 +63,7 @@ Finally, we will determine how office hours affect average time spent on labs pe
 
 ## Online Surveys Ethics
 
-Our proposed survey is not collecting any direct identifying information (including IP address). It is only collecting one indirect identifier in survey Question 2, which is the academic background of the respondent. It would be very difficult to re-identify the respondents from this piece of information.
+Our proposed survey is not collecting any direct identifying information (including IP address). It is only collecting one indirect identifier in survey Question 2, which is the academic background of the respondent. As the possible answers to this question are broad categories and therefore are probably less likely to be used as an identifier to re-identify the respondents.
 
 As our study is limited to the online survey, a cover letter will be presented to the participant for them to make an informed decision about participating in the survey study. We will use a Canadian-hosted survery tool and all survey data will be stored and accessed in Canada only.
 
