@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-In an accelerated program, such as the Master of Data Science (MDS), students are often limited on time. As MDS students, we are highly interested in investigating whether attending office hours helped students complete their lab assignments in a shorter amount of time.
+In an accelerated program, such as the Master of Data Science (MDS), students are often limited on time. As MDS students, we are highly interested in investigating whether attending office hours helped MDS students complete their lab assignments in a shorter amount of time.
 
 Therefore, the main question addressed by our study is:
 
