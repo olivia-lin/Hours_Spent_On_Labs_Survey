@@ -50,9 +50,9 @@ We conducted a [survey](https://ubc.ca1.qualtrics.com/jfe/form/SV_6JSd6n3qKwaU4y
 
 ## Data
 
-Our [sample data](https://github.ubc.ca/bettybhz/Hours_Spent_On_Labs_Survey_Data) for this study would be the 56 responses we received, which we consider a good representation of the population. We eliminated any identifiable information to protect the privacy. We stored the data on a github repository with access restricted to our team members and teaching staff.
+56 students participated in the survey. We believe Our [sample data](https://github.ubc.ca/bettybhz/Hours_Spent_On_Labs_Survey_Data) is a good representation of the population. We eliminated any identifiable information to protect the privacy of respondents. We stored the data on a github repository with access restricted to our team members and teaching staff.
 
-First we would perform [Exploratory Data Analysis(EDA)](2.2_Survey_Response_EDA.ipynb) and observe the charts, where we eliminate the unrelated confounders, i.e. confounders those do not show an obvious impact on the relationship between time we spend on the lab and office hours attended. For the remaining confounders, we would [apply regression](2.1_Survey_Response_Regression.ipynb) to further examine the effects of confounding variables.
+First we performed [Exploratory Data Analysis(EDA)](2.2_Survey_Response_EDA.ipynb), analyzed the charts and eliminated confounders that do not show an obvious impact on the relationship between time spent on the labs and attending office hours . For the remaining confounders, we [fitted different regressions](2.1_Survey_Response_Regression.ipynb) to further examine their effects.
 
 # Exploratory Data Analysis
 
@@ -77,7 +77,7 @@ df<- df[,-5]
 
 We first explored the distribution of our features. As shown by the plot below, our sample is dominated by students with an Engineering (15),Science (15) and Math (14) background. The majority of respondents were out of school between 0 and 2 years before joining the program.
 
-38 participants mostly work alone while 18 mostly work in groups. On a scale of 1 (low) to 5(high), most students rated their programming and statistical skills as average (3). Also, on a sacle of 1(never) to 5(always) most students attempt optional questions sometimes (2).                              
+38 participants mostly work alone while 18 mostly work in groups. On a scale of 1 (low) to 5(high), most students rated their programming and statistical skills as average (3). Also, on a scale of 1(never) to 5(always) most students attempt optional questions sometimes (2).                              
 
 Most students do not attend office hours but few students go to office hours 5 times a week. One participant did not report whether they attend office hours. 
 
@@ -131,7 +131,7 @@ labs(x="Office Hours attendance", y="Hours spent on labs per week")
 
 ***Figure 2: Relationship between attending office hours and average number of hours spent on labs per week***
 
-The above plot shows that there is no apparent relatioship between the two variables of interest. We then included potential confounding variables in the plot to explore whether attending office hours and hours spent on labs are indirectly related. 
+The above plot shows that there is no apparent relationship between the two variables of interest. We then included potential confounding variables in the plot to explore whether attending office hours and average number of hours spent on labs are indirectly related. 
 We found that only 3 out of 6 variables seem to matter: attempting optional questions, programming and statistical skills (Figure 3). 
 
 ```{r}
@@ -183,7 +183,7 @@ labs( y="Hours spent on labs", title = "Programing skills", x=" ")
 grid.arrange(optional, prog_plot, stats_plot, ncol=1)
 ```
  
-***Figure 3: Relationship between attending office hours and time spent on labs per number of optional questions attempts as well as programming and statistical skills*** 
+***Figure 3: Relationship between attending office hours and time spent on labs per number of optional questions attempts as well as programming and statistical skills***
 
 # Statistical Analysis and Results
 
@@ -195,8 +195,7 @@ grid.arrange(optional, prog_plot, stats_plot, ncol=1)
 
 ## Regression Models
 
-Since our response variable is expected to be non-negative, we decided to analyze the survey results using regression with a log-link transformation. Our response variable `lab_hours` is expected to be bounded between 0 and 168 hours (i.e maximum hours per week). 
-
+Since our response variable `lab_hours` (i.e maximum hours per week) is non-negative and bounded between 0 and 168 hours,  we analyzed the survey results using regression with a log-link transformation.
 According to our exploratory data analysis, three variables, `optional`, `stat`, and `program`, caught our attention and we believed they are potential confounding variables. Therefore, we used these three variables, together with our explanatory variable `attend_OH` and response variable `lab_hours` for our model.
 
 ### Baseline Model
@@ -231,7 +230,7 @@ kable(tidy(anova(mod1, test= "F")))
 
 **Table 3: Comparison between Baseline Model and Model 1**
 
-According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, variable `optional` is not a true confounding variable and we will not include `optional` in our final model.
+According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, the variable `optional` is not a true confounding variable and we will not be included in our final model.
 
 ### Model 2 with Statistical Skills
 
@@ -250,7 +249,7 @@ kable(tidy(anova(mod2, test= "F")))
 
 **Table 5: Comparison between Baseline Model and Model 2**
 
-According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, variable `stat` is not a true confounding variable and we will not include `stat` in our final model.
+According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, the variable `stat` is not a true confounding variable and we will not be included in our final model.
 
 ### Model 3 with Programming Skills
 
@@ -269,11 +268,11 @@ kable(tidy(anova(mod3, test= "F")))
 
 **Table 7: Comparison between Baseline Model and Model 3**
 
-According to Table 6, the coefficient for `attend_OH` is 0.087, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 7, our ANOVA F-test also shows that adding the variable `program` does not help improve our model. Therefore, variable `program` is not a true confounding variable and we will not include `program` in our final model.
+According to Table 6, the coefficient for `attend_OH` is 0.087, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 7, our ANOVA F-test also shows that adding the variable `program` does not help improve our model. Therefore, the variable `program` is not a true confounding variable and will not be included in our final model.
 
 ### Conclusion
 
-Based on our Exploratory Data Analysis (EDA), we decide to focus our empirical investigation on three confunding variables `optioanl`, `stat`, and `program`. However, after performing regression and F-test on these variables, we found that they are not true confounding variables and adding these three variables does not improve our model. 
+Based on our Exploratory Data Analysis (EDA), we decided to focus our empirical investigation on three confounding variables `optioanl`, `stat`, and `program`. However, after performing regression and F-test analyses on these variables, we found that they are not true confounding variables and adding these three variables does not improve our model. 
 
 Therefore, our final model is the baseline model $E(Y) = exp(\beta_0 + \beta_{\text{attend_OH}}X_{\text{attend_OH}})$.
 
@@ -290,10 +289,10 @@ We thoroughly considered all the possible confounders and chose the ones we thin
 
 One main limitation on our study was the sample size being too small. There are several consequences from this for our causal study. Some of the answers to our questions were categorical, such as the academic background, while some others were grouped, such as the years out of school. For these variables, as we have very limited amount of responses, there are not enough data points in one or more of these groups to support strong relationships between the variables. Also, the outliers would have a bigger impact on the regression model when there are not enough data points to balance. We are not eliminating any potential outliers due to the size of our data.
 
-Another potential problem would be the scoring for the last two questions, programming skills and statistical skills, being subjective. The absolute level of one's professional skills might be different from the self evaluated result.  we do not have enough data points to support a solid conclusion on the relationship between the confounding variables
+Another potential problem would be the scoring for the last two questions, programming skills and statistical skills, being subjective. The absolute level of one's professional skills might be different from the self evaluated result.  we do not have enough data points to support a solid conclusion on the relationship between the confounding variables.
 
 ## Future Improvements
 
-If we could conduct our study further in the future, we would try to increase the number of respondents. It would be more informative if we could include previous MDS cohorts. Also, as we are focusing on the relationship between "attending office hours" and "time spent on labs(assignments)", while our confounding variables are highly academic related, we could organize similar surveys to post graduate students in related programs.
+If we could conduct our study further in the future, we would try to increase the number of respondents. It would be more informative if we could include previous MDS cohorts. Also, as we are focusing on the relationship between "attending office hours" and "time spent on labs(assignments)", while our confounding variables are highly academic related, we could extend our surveys to post graduate students in related programs.
 
 For self-evaluated questions, we could utilize some courses or certificate exams that all respondents would have experienced, such as "do you find DSCI 512 to be difficult" rather than "rate your programming skills". It should bring the responses to be on the same scale.
