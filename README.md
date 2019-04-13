@@ -19,7 +19,7 @@ How does the number of times a Master of Data Science (MDS) student goes to offi
 
 ## Important Files
 
-- Milestone 1: [Research Proposal](docs/1_proposal.md)
+- Milestone 1: [Research Proposal](docs/1_Proposal.md)
 - Milestone 2: [EDA](docs/2.1_Survey_Response_EDA.ipynb) and [Stat Analysis](docs/2.1_Survey_Response_Regression.ipynb)on the survey response [data](https://github.ubc.ca/bettybhz/Hours_Spent_On_Labs_Survey_Data)
 - Milestone 3: [Final Report](docs/3_Final_Report.md)
-- [Peer Review]()
+- [Peer Review](https://github.com/UBC-MDS/554_Survey/issues/19)
