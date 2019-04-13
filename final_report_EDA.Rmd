@@ -1,0 +1,187 @@
+---
+title: "Relationship between attending office hours and average number of hours spent on labs per week"
+author: "Betty Zhou, Juno Chen, Olivia Lin, Orphelia Ellogne"
+date: "April 12, 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, errors=FALSE, message=FALSE)
+library(gridExtra)
+```
+
+```{r}
+options(warn=-1)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(cowplot))
+```
+
+
+# Introduction
+
+In an accelerated program, such as the Master of Data Science (MDS), students are often limited on time. As MDS students, we are highly interested in investigating whether attending office hours helped MDS students complete their lab assignments in a shorter amount of time.
+
+Therefore, the main question addressed by our study is:
+
+How does the number of times a Master of Data Science (MDS) student goes to office hours affect the average number of hours they spend working on labs per week?
+
+# Confounding Variables
+
+To ensure that our study is as causal as possible, we considered the following potential confounding variables:
+
+1. **Working style**: whether someone prefers to work alone or in groups.
+Working style may be a confounding variable as someone working in groups may have enough support to complete labs without going to office hours. At the same time, someone working in groups may spend more time discussing lab questions and thus spend more time on labs.
+
+2. **Academic background**: Science, Engineering, Math, Business, or Other. 
+Since MDS courses are heavily statistics and computer science based, we suspect someone with a statistics or computer science background are less likely to go to office hours. Furthermore, someone with a statistics or computer science background are more likely to finish labs faster because they are more rehearsed in the topics covered by the MDS curriculum.
+
+3. **Number of years out-of-school**: 0-2, 3-5, 5+ years.
+The longer someone has been out-of-school, the more likely for them to not be used to school routines and thus, more likely to struggle academically. Therefore, the longer someone has been out-of-school, the more likely someone will go to office hours to ask for help. At the same time, this student may not go to office hours, but spend more time on labs just because they are struggling.
+
+4. **Programming skills**: rated from 1 (low) to 5 (high). 
+The amount of time an MDS student spends on lab might not only be affected by their understanding of the concepts but also by their ability to translate their understanding into code. A student with strong programming skills might be efficient at the latter and spend less time on labs. At the same time this student might be less likely to need any help with coding, hence less likely to go to office hours.
+
+5. **Statistical skills**: rated from 1 (low) to 5 (high). 
+A student with strong statistical knowledge might understand concepts of certain MDS courses more quickly and spend less time on labs. At the same time, this student may require less help with concepts, hence less likely to go to office hours.
+
+6. **Attempts optional questions**: rated from 1 (never) to 5 (always).
+A student who decides to solve optional questions probably understands the material well, and thus, is less likely to go to office hours. On the other hand, compared to a person who only does mandatory questions, this student might spend more time working on labs.
+
+
+# Method
+
+xxxxxxxx (ADD LINKS TO DATA AND CODE)
+
+# Exploratory Data Analysis
+
+```{r}
+# Load survey data
+rawdata = suppressMessages(read_csv("Hours_Spent_On_Labs_Survey_Final.csv"))
+
+# Clean data
+raw_df = data.frame(rawdata)
+row_to_remove = c(1:2)
+col_to_remove = c(1,2,4,8,13,14)
+df = raw_df[-row_to_remove, -col_to_remove]
+names(df) <- c("attend_OH", "lab_hours", "group", "academic", "yrs_out_school", "program", "stat", "optional")
+
+df <- df %>% mutate(optional= as.integer(optional), stat= as.integer(stat), program= as.integer(program), lab_hours=as.integer(lab_hours), attend_OH= as.integer(attend_OH), group = as.factor(group), academic = as.factor(academic), yrs_out_school= as.integer(yrs_out_school)) %>% select (lab_hours, everything())
+
+
+# Create years out of school groups
+df$yrs_group <- cut(df$yrs_out_school, breaks=c(0, 3, 6,16), right = FALSE, labels = c("0-2","3-5","5+"))
+df<- df[,-5]
+```
+
+We first explored the distribution of our features. As shown by the plot below, our sample is dominated by students with an Engineering (15),Science (15) and Math (14) background. The majority of respondents were out of school between 0 and 2 years before joining the program.
+
+38 participants mostly work alone while 18 mostly work in groups. On a scale of 1 (low) to 5(high), most students rated their programming and statistical skills as average (3). Also, on a sacle of 1(never) to 5(always) most students attempt optional questions sometimes (2).                              
+
+Most students do not attend office hours but few students go to office hours 5 times a week. One participant did not report whether they attend office hours. 
+
+```{r}
+# Gathering the data to be able to facet on all variables
+df2 <- df %>% select("attend_OH","group","academic","program","stat","optional","yrs_group")  %>% 
+    drop_na()  %>% 
+    gather(variable,value) %>%
+    group_by(variable, value) %>% 
+    summarize(Count=n())
+
+#Plots
+labels<- c(
+    `academic`="Academic Background",
+    `attend_OH`="Office Hours attendance",
+    `group`="Work style",
+    `optional`="Do optional questions",
+    `program`= "Programming skills",
+    `stat`=" Statistics skills",
+    `yrs_group`= "Years out of school"
+)
+
+ggplot(df2,aes(x=value, y=Count))+ 
+        geom_bar( stat="identity")+
+        facet_wrap(~variable, scales="free_x", labeller=as_labeller(labels))+
+        theme_bw()+ 
+        theme(panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(),
+            strip.background=element_blank(), 
+            strip.text.x=element_text(size=11),
+            axis.text.x = element_text(angle = 14, hjust = 1))+
+        xlab("")+
+        ylab("Count")
+```
+***Figure 1: Distribution of explanatory variables***
+
+Then, we plotted the number of times students attend office hours per week against the average number of hours spent on labs (Figure 2). 
+
+```{r, fig.width = 3.2, fig.height =3.2}
+df %>% 
+ggplot(aes(attend_OH, lab_hours)) +
+    geom_jitter(alpha=0.5) +
+    theme_bw()+
+    theme(panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(),
+            strip.background=element_blank(), 
+            strip.text.x=element_text(size=11))+
+labs(x="Office Hours attendance", y="Hours spent on labs per week")
+```
+
+***Figure 2: Relationship between attending office hours and average number of hours spent on labs per week***
+
+The above plot shows that there is no apparent relatioship between the two variables of interest. We then included potential confounding variables in the plot to explore whether attending office hours and hours spent on labs are indirectly related. 
+We found that only 3 out of 6 variables seem to matter: attempting optional questions, programming and statistical skills (Figure 3). 
+
+```{r}
+
+# Optional questions plot
+optional <- df %>% 
+drop_na()  %>% 
+ggplot(aes(attend_OH, lab_hours)) +
+    facet_grid(.~optional,scales="free_y") +
+    geom_jitter(alpha=0.5) +
+    theme_bw()+
+    theme(panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(),
+            strip.background=element_blank(), 
+            strip.text.x=element_text(size=9),
+           plot.title = element_text(size =10))+
+            labs(title='Attempt optional questions', x=" ", y= "" )
+
+# Stats plot
+
+stats_plot <- df %>% 
+drop_na()  %>% 
+ggplot(aes(attend_OH, lab_hours)) +
+    facet_grid(.~stat,scales="free_y", labeller = label_context) +
+    geom_jitter(alpha=0.5) +
+    theme_bw()+
+    theme(panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(),
+            strip.background=element_blank(), 
+            strip.text.x=element_text(size=9),
+           plot.title = element_text(size =10))+
+labs(x=" Weekly Office Hours attendance", y= "", title =" Statistical skills") 
+
+# Programming plot
+
+prog_plot <- df %>% 
+drop_na()  %>% 
+ggplot(aes(attend_OH, lab_hours)) +
+    facet_grid(.~program,scales="free_y", labeller = label_context) +
+    geom_jitter(alpha=0.5) +
+    theme_bw()+
+    theme(panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(),
+            strip.background=element_blank(), 
+            strip.text.x=element_text(size=9),
+            plot.title = element_text(size =10))+
+labs( y="Hours spent on labs", title = "Programing skills", x=" ") 
+
+grid.arrange(optional, prog_plot, stats_plot, ncol=1)
+```
+ 
+***Figure 3: Relationship between attending office hours and time spent on labs per number of optional questions attempts as well as programming and statistical skills*** 
+
+# Statistical Analysis and Results
+
+# Discussion
