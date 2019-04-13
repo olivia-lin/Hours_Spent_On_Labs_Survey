@@ -12,10 +12,10 @@ Therefore, the main question addressed by our study is:
 
 **How does the number of times a Master of Data Science (MDS) student goes to office hours affect the average number of hours they spend working on labs per week?**
 
-Confounding Variables
-=====================
+Variables
+=========
 
-To ensure that our study is as causal as possible, we considered the following potential confounding variables:
+To ensure that our study is as causal as possible, we considered the following response, explanatory and otential confounding variables:
 
 <table style="width:88%;">
 <colgroup>
@@ -380,7 +380,7 @@ optional
 </table>
 ***Table 3: Comparison between Baseline Model and Model 1***
 
-According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, the variable `optional` is not a true confounding variable and we will not be included in our final model.
+According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, the variable `optional` is not a true confounding variable and will not be included in our final model.
 
 ### Model 2 with Statistical Skills
 
@@ -562,7 +562,7 @@ stat
 </table>
 ***Table 5: Comparison between Baseline Model and Model 2***
 
-According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, the variable `stat` is not a true confounding variable and we will not be included in our final model.
+According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, the variable `stat` is not a true confounding variable and will not be included in our final model.
 
 ### Model 3 with Programming Skills
 
@@ -748,7 +748,7 @@ According to Table 6, the coefficient for `attend_OH` is 0.087, which is within 
 
 ### Conclusion
 
-Based on our Exploratory Data Analysis (EDA), we decided to focus our empirical investigation on three confounding variables `optioanl`, `stat`, and `program`. However, after performing regression and F-test analyses on these variables, we found that they are not true confounding variables and adding these three variables does not improve our model.
+Based on our Exploratory Data Analysis (EDA), we decided to focus our empirical investigation on three confounding variables `optional`, `stat`, and `program`. However, after performing regression and F-test analyses on these variables, we found that they are not true confounding variables and adding these three variables does not improve our model.
 
 Therefore, our final model is the baseline model *E*(*Y*)=*e**x**p*(*β*<sub>0</sub> + *β*<sub>attend\_OH</sub>*X*<sub>attend\_OH</sub>).
 
