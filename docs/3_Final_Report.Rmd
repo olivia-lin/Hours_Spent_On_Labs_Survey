@@ -2,7 +2,7 @@
 title: "Relationship between attending office hours and average number of hours spent on labs per week"
 author: "Betty Zhou, Juno Chen, Olivia Lin, Orphelia Ellogne"
 date: "April 12, 2019"
-output: pdf_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -23,7 +23,7 @@ In an accelerated program, such as the Master of Data Science (MDS), students ar
 
 Therefore, the main question addressed by our study is:
 
-How does the number of times a Master of Data Science (MDS) student goes to office hours affect the average number of hours they spend working on labs per week?
+**How does the number of times a Master of Data Science (MDS) student goes to office hours affect the average number of hours they spend working on labs per week?**
 
 # Confounding Variables
 
@@ -50,7 +50,15 @@ A student who decides to solve optional questions probably understands the mater
 
 # Method
 
-xxxxxxxx (ADD LINKS TO DATA AND CODE)
+## Survey
+
+We conducted a [survey](https://ubc.ca1.qualtrics.com/jfe/form/SV_6JSd6n3qKwaU4yp) with questions using the above confounders via Qualtrics. The anonymous survey was sent to 2018 MDS cohorts. We did not include any unique identifiers in the survey.
+
+## Data
+
+Our [sample data](https://github.ubc.ca/bettybhz/Hours_Spent_On_Labs_Survey_Data) for this study would be the 56 responses we received, which we consider a good representation of the population. We eliminated any identifiable information to protect the privacy. We stored the data on a github repository with access restricted to our team members and teaching staff.
+
+First we would perform Exploratory Data Analysis(EDA) and observe the charts, where we eliminate the unrelated confounders, i.e. confounders those do not show an obvious impact on the relationship between time we spend on the lab and office hours attended. For the remaining confounders, we would apply regression to further examine the effects of confounding variables.
 
 # Exploratory Data Analysis
 
@@ -110,6 +118,7 @@ ggplot(df2,aes(x=value, y=Count))+
         xlab("")+
         ylab("Count")
 ```
+
 ***Figure 1: Distribution of explanatory variables***
 
 Then, we plotted the number of times students attend office hours per week against the average number of hours spent on labs (Figure 2). 
@@ -185,3 +194,19 @@ grid.arrange(optional, prog_plot, stats_plot, ncol=1)
 # Statistical Analysis and Results
 
 # Discussion
+
+## Survey Design and Assumption
+
+We thoroughly considered all the possible confounders and chose the ones we think would make our study as causal as possible. To ensure the flexibility of performing various types of statistical analysis, we prepared the data by creating proper questions and grouped answers for the confounders. Our study also included careful assessment on the confounders (EDA and regression analysis) to provide solid evidence for our final result.
+
+## Limitations
+
+One main limitation on our study was the sample size being too small. There are several consequences from this for our causal study. Some of the answers to our questions were categorical, such as the academic background, while some others were grouped, such as the years out of school. For these variables, as we have very limited amount of responses, there are not enough data points in one or more of these groups to support strong relationships between the variables. Also, the outliers would have a bigger impact on the regression model when there are not enough data points to balance. We are not eliminating any potential outliers due to the size of our data.
+
+Another potential problem would be the scoring for the last two questions, programming skills and statistical skills, being subjective. The absolute level of one's professional skills might be different from the self evaluated result.  we do not have enough data points to support a solid conclusion on the relationship between the confounding variables
+
+## Future Improvements
+
+If we could conduct our study further in the future, we would try to increase the number of respondents. It would be more informative if we could include previous MDS cohorts. Also, as we are focusing on the relationship between "attending office hours" and "time spent on labs(assignments)", while our confounding variables are highly academic related, we could organize similar surveys to post graduate students in related programs.
+
+For self-evaluated questions, we could utilize some courses or certificate exams that all respondents would have experienced, such as "do you find DSCI 512 to be difficult" rather than "rate your programming skills". It should bring the responses to be on the same scale.
