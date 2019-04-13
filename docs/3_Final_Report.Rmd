@@ -14,7 +14,10 @@ library(gridExtra)
 options(warn=-1)
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(cowplot))
+suppressPackageStartupMessages(library(broom))
+suppressPackageStartupMessages(library(kableExtra))
 ```
+
 
 
 # Introduction
@@ -58,7 +61,7 @@ We conducted a [survey](https://ubc.ca1.qualtrics.com/jfe/form/SV_6JSd6n3qKwaU4y
 
 Our [sample data](https://github.ubc.ca/bettybhz/Hours_Spent_On_Labs_Survey_Data) for this study would be the 56 responses we received, which we consider a good representation of the population. We eliminated any identifiable information to protect the privacy. We stored the data on a github repository with access restricted to our team members and teaching staff.
 
-First we would perform Exploratory Data Analysis(EDA) and observe the charts, where we eliminate the unrelated confounders, i.e. confounders those do not show an obvious impact on the relationship between time we spend on the lab and office hours attended. For the remaining confounders, we would apply regression to further examine the effects of confounding variables.
+First we would perform [Exploratory Data Analysis(EDA)](2.2_Survey_Response_EDA.ipynb) and observe the charts, where we eliminate the unrelated confounders, i.e. confounders those do not show an obvious impact on the relationship between time we spend on the lab and office hours attended. For the remaining confounders, we would [apply regression](2.1_Survey_Response_Regression.ipynb) to further examine the effects of confounding variables.
 
 # Exploratory Data Analysis
 
@@ -192,6 +195,93 @@ grid.arrange(optional, prog_plot, stats_plot, ncol=1)
 ***Figure 3: Relationship between attending office hours and time spent on labs per number of optional questions attempts as well as programming and statistical skills*** 
 
 # Statistical Analysis and Results
+
+## Hypothesis
+
+**Null hypothesis:** The number of times a MDS student attends office hours does not affect the average number of hours spent working on labs per week.
+
+**Alternative hypothesis:** The number of times a MDS student attends office hours affects the average number of hours spent working on labs per week.
+
+## Regression Models
+
+Since our response variable is expected to be non-negative, we decide to analyze the survey results using regression with a log-link transformation. Our response variable `lab_hours` is expected to be bounded between 0 and 168 hours (i.e maximum hours per week). 
+
+According to our exploratory data analysis, three variables, `optional`, `stat`, and `program`, catch our attention and we believe they are potential confounding variables. Therefore, we will use these three variables, together with our explanatory variable `attend_OH` and response variable `lab_hours` for our model.
+
+#### Baseline Model
+
+$$E(Y) = exp(\beta_0 + \beta_{\text{attend_OH}}X_{\text{attend_OH}})$$
+
+Our baseline model is to regress `lab_hours` only on `attend_OH`. We will use this model as a reference to evaluate and compare other models.
+
+```{r}
+base <- glm(lab_hours ~ attend_OH , data = df, family = gaussian(link = "log"))
+kable(tidy(base))
+```
+*Table 1: Regression Coefficients for Baselien Model*
+
+According to Table 1, we can see the coefficient for `attend_OH` is 0.097 with p-value of 0.02 for our baseline model. The 95% confidence interval for $\beta_{\text{attend_OH}}$ is (0.0176, 0.177).
+
+#### Model 1 with Optional Questions
+
+$$E(Y) = exp(\beta_0 + \beta_{\text{attend_OH}}X_{\text{attend_OH}}+\beta_{\text{optional}}X_{\text{optional}})$$
+
+```{r}
+mod1 <- glm(lab_hours ~ attend_OH + optional, data = df, family = gaussian(link = "log"))
+kable(tidy(mod1))
+```
+*Table 2: Regression Coefficients for Model 1 *
+
+```{r}
+kable(tidy(anova(mod1, test= "F")))
+```
+*Table 3: Comparison between Baseline Model and Model 1 *
+
+According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, variable `optional` is not a true confounding variable and we will not include `optional` in our final model.
+
+#### Model 2 with Statistical Skills
+
+$$E(Y) = exp(\beta_0 + \beta_{\text{attend_OH}}X_{\text{attend_OH}}+\beta_{\text{stat}}X_{\text{stat}})$$
+
+```{r}
+mod2 <- glm(lab_hours ~ attend_OH + stat, data = df, family = gaussian(link = "log"))
+kable(tidy(mod2))
+```
+*Table 4: Regression Coefficients for Model 2*
+
+```{r}
+kable(tidy(anova(mod2, test= "F")))
+```
+*Table 5: Comparison between Baseline Model and Model 2*
+
+According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, variable `stat` is not a true confounding variable and we will not include `stat` in our final model.
+
+#### Model 3 with Programming Skills
+
+$$E(Y) = exp(\beta_0 + \beta_{\text{attend_OH}}X_{\text{attend_OH}}+\beta_{\text{program}}X_{\text{program}})$$
+
+```{r}
+mod3 <- glm(lab_hours ~ attend_OH + program, data = df, family = gaussian(link = "log"))
+kable(tidy(mod3))
+```
+*Table 6: Regression Coefficients for Model 3*
+
+
+```{r}
+kable(tidy(anova(mod3, test= "F")))
+```
+*Table 7: Comparison between Baseline Model and Model 3*
+
+According to Table 6, the coefficient for `attend_OH` is 0.087, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 7, our ANOVA F-test also shows that adding the variable `program` does not help improve our model. Therefore, variable `program` is not a true confounding variable and we will not include `program` in our final model.
+
+#### Conclusion
+
+Based on our Exploratory Data Analysis (EDA), we decide to focus our empirical investigation on three confunding variables `optioanl`, `stat`, and `program`. However, after performing regression and F-test on these variables, we found that they are not true confounding variables and adding these three variables does not improve our model. 
+
+Therefore, our final model is our baseline model $E(Y) = exp(\beta_0 + \beta_{\text{attend_OH}}X_{\text{attend_OH}})$.
+
+Since the p-value is 0.02 which is small enough, we can reject the null hypothesis under significance level of 0.05. Therefore, the number of times a MDS student attends office hours affects the average number of hours spent working on labs per week. The coefficient for `attend_OH` is 0.097, where exp(0.097) is the effect of attending office hours. This means on average, one visit increase in office hours is expected to increase hours spent on labs per week by 1.1 times.
+
 
 # Discussion
 
