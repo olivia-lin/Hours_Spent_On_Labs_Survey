@@ -82,15 +82,15 @@ Hypothesis
 Regression Models
 -----------------
 
-Since our response variable is expected to be non-negative, we decide to analyze the survey results using regression with a log-link transformation. Our response variable `lab_hours` is expected to be bounded between 0 and 168 hours (i.e maximum hours per week).
+Since our response variable is expected to be non-negative, we decided to analyze the survey results using regression with a log-link transformation. Our response variable `lab_hours` is expected to be bounded between 0 and 168 hours (i.e maximum hours per week).
 
-According to our exploratory data analysis, three variables, `optional`, `stat`, and `program`, catch our attention and we believe they are potential confounding variables. Therefore, we will use these three variables, together with our explanatory variable `attend_OH` and response variable `lab_hours` for our model.
+According to our exploratory data analysis, three variables, `optional`, `stat`, and `program`, caught our attention and we believed they are potential confounding variables. Therefore, we used these three variables, together with our explanatory variable `attend_OH` and response variable `lab_hours` for our model.
 
-#### Baseline Model
+### Baseline Model
 
 *E*(*Y*)=*e**x**p*(*β*<sub>0</sub> + *β*<sub>attend\_OH</sub>*X*<sub>attend\_OH</sub>)
 
-Our baseline model is to regress `lab_hours` only on `attend_OH`. We will use this model as a reference to evaluate and compare other models.
+Our baseline model is to regress `lab_hours` only on `attend_OH`. We used this model as a reference to evaluate and compare other models.
 
 <table>
 <thead>
@@ -153,7 +153,7 @@ attend\_OH
 
 According to Table 1, we can see the coefficient for `attend_OH` is 0.097 with p-value of 0.02 for our baseline model. The 95% confidence interval for *β*<sub>attend\_OH</sub> is (0.0176, 0.177).
 
-#### Model 1 with Optional Questions
+### Model 1 with Optional Questions
 
 *E*(*Y*)=*e**x**p*(*β*<sub>0</sub> + *β*<sub>attend\_OH</sub>*X*<sub>attend\_OH</sub> + *β*<sub>optional</sub>*X*<sub>optional</sub>)
 
@@ -335,7 +335,7 @@ optional
 
 According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, variable `optional` is not a true confounding variable and we will not include `optional` in our final model.
 
-#### Model 2 with Statistical Skills
+### Model 2 with Statistical Skills
 
 *E*(*Y*)=*e**x**p*(*β*<sub>0</sub> + *β*<sub>attend\_OH</sub>*X*<sub>attend\_OH</sub> + *β*<sub>stat</sub>*X*<sub>stat</sub>)
 
@@ -517,7 +517,7 @@ stat
 
 According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, variable `stat` is not a true confounding variable and we will not include `stat` in our final model.
 
-#### Model 3 with Programming Skills
+### Model 3 with Programming Skills
 
 *E*(*Y*)=*e**x**p*(*β*<sub>0</sub> + *β*<sub>attend\_OH</sub>*X*<sub>attend\_OH</sub> + *β*<sub>program</sub>*X*<sub>program</sub>)
 
@@ -699,11 +699,11 @@ program
 
 According to Table 6, the coefficient for `attend_OH` is 0.087, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 7, our ANOVA F-test also shows that adding the variable `program` does not help improve our model. Therefore, variable `program` is not a true confounding variable and we will not include `program` in our final model.
 
-#### Conclusion
+### Conclusion
 
 Based on our Exploratory Data Analysis (EDA), we decide to focus our empirical investigation on three confunding variables `optioanl`, `stat`, and `program`. However, after performing regression and F-test on these variables, we found that they are not true confounding variables and adding these three variables does not improve our model.
 
-Therefore, our final model is our baseline model *E*(*Y*)=*e**x**p*(*β*<sub>0</sub> + *β*<sub>attend\_OH</sub>*X*<sub>attend\_OH</sub>).
+Therefore, our final model is the baseline model *E*(*Y*)=*e**x**p*(*β*<sub>0</sub> + *β*<sub>attend\_OH</sub>*X*<sub>attend\_OH</sub>).
 
 Since the p-value is 0.02 which is small enough, we can reject the null hypothesis under significance level of 0.05. Therefore, the number of times a MDS student attends office hours affects the average number of hours spent working on labs per week. The coefficient for `attend_OH` is 0.097, where exp(0.097) is the effect of attending office hours. This means on average, one visit increase in office hours is expected to increase hours spent on labs per week by 1.1 times.
 
