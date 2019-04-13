@@ -196,7 +196,7 @@ attend\_OH
 </tr>
 </tbody>
 </table>
-**Table 1: Regression Coefficients for Baselien Model**
+***Table 1: Regression Coefficients for Baselien Model***
 
 According to Table 1, we can see the coefficient for `attend_OH` is 0.097 with p-value of 0.02 for our baseline model. The 95% confidence interval for *β*<sub>attend\_OH</sub> is (0.0176, 0.177).
 
@@ -278,7 +278,7 @@ optional
 </tr>
 </tbody>
 </table>
-**Table 2: Regression Coefficients for Model 1**
+***Table 2: Regression Coefficients for Model 1***
 
 <table>
 <thead>
@@ -378,7 +378,7 @@ optional
 </tr>
 </tbody>
 </table>
-**Table 3: Comparison between Baseline Model and Model 1**
+***Table 3: Comparison between Baseline Model and Model 1***
 
 According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, the variable `optional` is not a true confounding variable and we will not be included in our final model.
 
@@ -460,7 +460,7 @@ stat
 </tr>
 </tbody>
 </table>
-**Table 4: Regression Coefficients for Model 2**
+***Table 4: Regression Coefficients for Model 2***
 
 <table>
 <thead>
@@ -560,7 +560,7 @@ stat
 </tr>
 </tbody>
 </table>
-**Table 5: Comparison between Baseline Model and Model 2**
+***Table 5: Comparison between Baseline Model and Model 2***
 
 According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, the variable `stat` is not a true confounding variable and we will not be included in our final model.
 
@@ -642,7 +642,7 @@ program
 </tr>
 </tbody>
 </table>
-**Table 6: Regression Coefficients for Model 3**
+***Table 6: Regression Coefficients for Model 3***
 
 <table>
 <thead>
@@ -742,7 +742,7 @@ program
 </tr>
 </tbody>
 </table>
-**Table 7: Comparison between Baseline Model and Model 3**
+***Table 7: Comparison between Baseline Model and Model 3***
 
 According to Table 6, the coefficient for `attend_OH` is 0.087, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 7, our ANOVA F-test also shows that adding the variable `program` does not help improve our model. Therefore, the variable `program` is not a true confounding variable and will not be included in our final model.
 
