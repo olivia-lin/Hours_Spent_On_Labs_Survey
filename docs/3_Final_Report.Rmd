@@ -32,24 +32,15 @@ Therefore, the main question addressed by our study is:
 
 To ensure that our study is as causal as possible, we considered the following potential confounding variables:
 
-1. **Working style**: whether someone prefers to work alone or in groups.
-Working style may be a confounding variable as someone working in groups may have enough support to complete labs without going to office hours. At the same time, someone working in groups may spend more time discussing lab questions and thus spend more time on labs.
-
-2. **Academic background**: Science, Engineering, Math, Business, or Other. 
-Since MDS courses are heavily statistics and computer science based, we suspect someone with a statistics or computer science background are less likely to go to office hours. Furthermore, someone with a statistics or computer science background are more likely to finish labs faster because they are more rehearsed in the topics covered by the MDS curriculum.
-
-3. **Number of years out-of-school**: 0-2, 3-5, 5+ years.
-The longer someone has been out-of-school, the more likely for them to not be used to school routines and thus, more likely to struggle academically. Therefore, the longer someone has been out-of-school, the more likely someone will go to office hours to ask for help. At the same time, this student may not go to office hours, but spend more time on labs just because they are struggling.
-
-4. **Programming skills**: rated from 1 (low) to 5 (high). 
-The amount of time an MDS student spends on lab might not only be affected by their understanding of the concepts but also by their ability to translate their understanding into code. A student with strong programming skills might be efficient at the latter and spend less time on labs. At the same time this student might be less likely to need any help with coding, hence less likely to go to office hours.
-
-5. **Statistical skills**: rated from 1 (low) to 5 (high). 
-A student with strong statistical knowledge might understand concepts of certain MDS courses more quickly and spend less time on labs. At the same time, this student may require less help with concepts, hence less likely to go to office hours.
-
-6. **Attempts optional questions**: rated from 1 (never) to 5 (always).
-A student who decides to solve optional questions probably understands the material well, and thus, is less likely to go to office hours. On the other hand, compared to a person who only does mandatory questions, this student might spend more time working on labs.
-
+|Variable Name|Type|Values|Description|
+|:------|:-------------|:------------------|:------------------|
+|Lab hours|response variable|numerical: integer|Hours someone spends per week working on labs| 
+|Attend office hours|explanatory variable|numerical: integer|Times per week someone attends office hours| 
+|Working style |confounder|categorical: mostly groups, mostly alone|Whether someone prefers to work alone or in group|  
+|Academic background|confounder|categorical: Science, Engineering, Math, Business, Other|Someone's academic background before joining MDS|  
+|Number of years out-of-school|confounder|categorical: 0-2, 3-5, 5+|How many years someone has been out of school|
+|Programming skills|confounder|numerical: rated from 1 (low) to 5 (high)|Self rating of programming skills| 
+|Statistical skills|confounder|numerical: rated from 1 (low) to 5 (high)|Self rating of statistical skills| 
 
 # Method
 
@@ -219,7 +210,7 @@ base <- glm(lab_hours ~ attend_OH , data = df, family = gaussian(link = "log"))
 kable(tidy(base))
 ```
 
-*Table 1: Regression Coefficients for Baselien Model*
+**Table 1: Regression Coefficients for Baselien Model**
 
 According to Table 1, we can see the coefficient for `attend_OH` is 0.097 with p-value of 0.02 for our baseline model. The 95% confidence interval for $\beta_{\text{attend_OH}}$ is (0.0176, 0.177).
 
@@ -232,13 +223,13 @@ mod1 <- glm(lab_hours ~ attend_OH + optional, data = df, family = gaussian(link 
 kable(tidy(mod1))
 ```
 
-*Table 2: Regression Coefficients for Model 1 *
+**Table 2: Regression Coefficients for Model 1**
 
 ```{r}
 kable(tidy(anova(mod1, test= "F")))
 ```
 
-*Table 3: Comparison between Baseline Model and Model 1 *
+**Table 3: Comparison between Baseline Model and Model 1**
 
 According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, variable `optional` is not a true confounding variable and we will not include `optional` in our final model.
 
@@ -251,13 +242,13 @@ mod2 <- glm(lab_hours ~ attend_OH + stat, data = df, family = gaussian(link = "l
 kable(tidy(mod2))
 ```
 
-*Table 4: Regression Coefficients for Model 2*
+**Table 4: Regression Coefficients for Model 2**
 
 ```{r}
 kable(tidy(anova(mod2, test= "F")))
 ```
 
-*Table 5: Comparison between Baseline Model and Model 2*
+**Table 5: Comparison between Baseline Model and Model 2**
 
 According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, variable `stat` is not a true confounding variable and we will not include `stat` in our final model.
 
@@ -270,13 +261,13 @@ mod3 <- glm(lab_hours ~ attend_OH + program, data = df, family = gaussian(link =
 kable(tidy(mod3))
 ```
 
-*Table 6: Regression Coefficients for Model 3*
+**Table 6: Regression Coefficients for Model 3**
 
 ```{r}
 kable(tidy(anova(mod3, test= "F")))
 ```
 
-*Table 7: Comparison between Baseline Model and Model 3*
+**Table 7: Comparison between Baseline Model and Model 3**
 
 According to Table 6, the coefficient for `attend_OH` is 0.087, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 7, our ANOVA F-test also shows that adding the variable `program` does not help improve our model. Therefore, variable `program` is not a true confounding variable and we will not include `program` in our final model.
 
