@@ -28,9 +28,9 @@ Therefore, the main question addressed by our study is:
 
 **How does the number of times a Master of Data Science (MDS) student goes to office hours affect the average number of hours they spend working on labs per week?**
 
-# Confounding Variables
+# Variables
 
-To ensure that our study is as causal as possible, we considered the following potential confounding variables:
+To ensure that our study is as causal as possible, we considered the following response, explanatory and otential confounding variables:
 
 |Variable Name|Type|Values|Description|
 |:------|:-------------|:------------------|:------------------|
@@ -58,7 +58,7 @@ First we performed [Exploratory Data Analysis(EDA)](2.2_Survey_Response_EDA.ipyn
 
 ```{r}
 # Load survey data
-rawdata = suppressMessages(read_csv("Hours_Spent_On_Labs_Survey_Final.csv"))
+rawdata = suppressMessages(read_csv("/Users/bettyzhou/Desktop/Hours_Spent_On_Labs_Survey_Data/Hours_Spent_On_Labs_Survey_Final.csv"))
 
 # Clean data
 raw_df = data.frame(rawdata)
@@ -209,7 +209,7 @@ base <- glm(lab_hours ~ attend_OH , data = df, family = gaussian(link = "log"))
 kable(tidy(base))
 ```
 
-**Table 1: Regression Coefficients for Baselien Model**
+***Table 1: Regression Coefficients for Baselien Model***
 
 According to Table 1, we can see the coefficient for `attend_OH` is 0.097 with p-value of 0.02 for our baseline model. The 95% confidence interval for $\beta_{\text{attend_OH}}$ is (0.0176, 0.177).
 
@@ -222,13 +222,13 @@ mod1 <- glm(lab_hours ~ attend_OH + optional, data = df, family = gaussian(link 
 kable(tidy(mod1))
 ```
 
-**Table 2: Regression Coefficients for Model 1**
+***Table 2: Regression Coefficients for Model 1***
 
 ```{r}
 kable(tidy(anova(mod1, test= "F")))
 ```
 
-**Table 3: Comparison between Baseline Model and Model 1**
+***Table 3: Comparison between Baseline Model and Model 1***
 
 According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, the variable `optional` is not a true confounding variable and will not be included in our final model.
 
@@ -241,13 +241,13 @@ mod2 <- glm(lab_hours ~ attend_OH + stat, data = df, family = gaussian(link = "l
 kable(tidy(mod2))
 ```
 
-**Table 4: Regression Coefficients for Model 2**
+***Table 4: Regression Coefficients for Model 2***
 
 ```{r}
 kable(tidy(anova(mod2, test= "F")))
 ```
 
-**Table 5: Comparison between Baseline Model and Model 2**
+***Table 5: Comparison between Baseline Model and Model 2***
 
 According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, the variable `stat` is not a true confounding variable and will not be included in our final model.
 
@@ -260,19 +260,19 @@ mod3 <- glm(lab_hours ~ attend_OH + program, data = df, family = gaussian(link =
 kable(tidy(mod3))
 ```
 
-**Table 6: Regression Coefficients for Model 3**
+***Table 6: Regression Coefficients for Model 3***
 
 ```{r}
 kable(tidy(anova(mod3, test= "F")))
 ```
 
-**Table 7: Comparison between Baseline Model and Model 3**
+***Table 7: Comparison between Baseline Model and Model 3***
 
 According to Table 6, the coefficient for `attend_OH` is 0.087, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 7, our ANOVA F-test also shows that adding the variable `program` does not help improve our model. Therefore, the variable `program` is not a true confounding variable and will not be included in our final model.
 
 ### Conclusion
 
-Based on our Exploratory Data Analysis (EDA), we decided to focus our empirical investigation on three confounding variables `optioanl`, `stat`, and `program`. However, after performing regression and F-test analyses on these variables, we found that they are not true confounding variables and adding these three variables does not improve our model. 
+Based on our Exploratory Data Analysis (EDA), we decided to focus our empirical investigation on three confounding variables `optional`, `stat`, and `program`. However, after performing regression and F-test analyses on these variables, we found that they are not true confounding variables and adding these three variables does not improve our model. 
 
 Therefore, our final model is the baseline model $E(Y) = exp(\beta_0 + \beta_{\text{attend_OH}}X_{\text{attend_OH}})$.
 
