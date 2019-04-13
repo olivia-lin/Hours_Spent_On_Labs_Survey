@@ -230,7 +230,7 @@ kable(tidy(anova(mod1, test= "F")))
 
 **Table 3: Comparison between Baseline Model and Model 1**
 
-According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, the variable `optional` is not a true confounding variable and we will not be included in our final model.
+According to Table 2, the coefficient for `attend_OH` is 0.096, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 3, our ANOVA F-test also shows that adding the variable optional does not help improve our model. Therefore, the variable `optional` is not a true confounding variable and will not be included in our final model.
 
 ### Model 2 with Statistical Skills
 
@@ -249,7 +249,7 @@ kable(tidy(anova(mod2, test= "F")))
 
 **Table 5: Comparison between Baseline Model and Model 2**
 
-According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, the variable `stat` is not a true confounding variable and we will not be included in our final model.
+According to Table 4, the coefficient for `attend_OH` is 0.111, which is within the 95% confidence interval (0.0176, 0.177) from the baseline model. According to Table 5, our ANOVA F-test also shows that adding the variable `stat` does not help improve our model. Therefore, the variable `stat` is not a true confounding variable and will not be included in our final model.
 
 ### Model 3 with Programming Skills
 
