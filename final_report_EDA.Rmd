@@ -1,5 +1,5 @@
 ---
-title: "Relationship between office hours attendance and average hours spent on labs per week"
+title: "Relationship between attending office hours and average number of hours spent on labs per week"
 author: "Betty Zhou, Juno Chen, Olivia Lin, Orphelia Ellogne"
 date: "April 12, 2019"
 output: pdf_document
